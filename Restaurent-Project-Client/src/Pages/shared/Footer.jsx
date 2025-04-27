@@ -5,13 +5,11 @@ const Footer = () => {
       <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
         <aside>
           <h3 className="text-5xl">Contact Us</h3>
-
-
           <p>
-            ACME Industries Ltd.
-            <br />
-            Providing reliable tech since 1992
+           123 Abi Street,Dhaka Bangladesh
           </p>
+          <p>Mon - Fri : 08:00-12:00</p>
+          <p>Sun - Sat : 09:00-23:00</p>
         </aside>
         <nav>
           <h6 className="footer-title">Social</h6>
