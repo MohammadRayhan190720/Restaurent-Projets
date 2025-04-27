@@ -1,18 +1,17 @@
 
 const Footer = () => {
   return (
-    <>
-      <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
-        <aside>
+    <div className="p-10">
+      <footer className=" sm:footer-horizontal  grid w-full ">
+        <aside className="bg-[#1F2937] text-white w-1/2 sm:w-full flex flex-col justify-center items-center py-10">
           <h3 className="text-5xl">Contact Us</h3>
-          <p>
-           123 Abi Street,Dhaka Bangladesh
-          </p>
+          <p>123 Abi Street,Dhaka Bangladesh</p>
           <p>Mon - Fri : 08:00-12:00</p>
           <p>Sun - Sat : 09:00-23:00</p>
         </aside>
-        <nav>
-          <h6 className="footer-title">Social</h6>
+        <nav className="bg-[#111827] text-white w-1/2 sm:w-full flex flex-col justify-center items-center py-10">
+          <h6 className="footer-title">Follow Us</h6>
+          <p>Join Us On Social Media</p>
           <div className="grid grid-flow-col gap-4">
             <a>
               <svg
@@ -50,7 +49,7 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
-      <div className="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
+      <div className="footer sm:footer-horizontal footer-center bg-black text-white p-4">
         <aside>
           <p>
             Copyright © {new Date().getFullYear()} - All right reserved by ACME
@@ -58,7 +57,7 @@ const Footer = () => {
           </p>
         </aside>
       </div>
-    </>
+    </div>
   );
 };
 
