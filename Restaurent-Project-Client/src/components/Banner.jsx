@@ -25,11 +25,11 @@ const Banner = () => {
         </div>
         <div>
           <img src={image4} />
-          <p className="legend">Item-1</p>
+          <p className="legend">Item-4</p>
         </div>
         <div>
           <img src={image5} />
-          <p className="legend">Item-2</p>
+          <p className="legend">Item-5</p>
         </div>
         <div>
           <img src={image6} />
