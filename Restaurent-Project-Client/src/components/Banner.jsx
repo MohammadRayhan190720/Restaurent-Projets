@@ -21,7 +21,7 @@ const Banner = () => {
         </div>
         <div>
           <img src={image3} />
-          <p className="legend">Item-3</p>
+          <p className="legend">Item-3.</p>
         </div>
         <div>
           <img src={image4} />
