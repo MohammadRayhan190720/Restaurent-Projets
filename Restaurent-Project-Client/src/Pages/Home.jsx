@@ -4,6 +4,7 @@ import Category from '../components/Category';
 import HomeBg from '../components/HomeBg';
 import PopularMenu from '../components/PopularMenu';
 import ChiefRe from '../components/ChiefRe';
+import Featured from '../components/Featured';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
      <HomeBg></HomeBg>
      <PopularMenu></PopularMenu>
      <ChiefRe></ChiefRe>
+     <Featured></Featured>
       
     </div>
   );
