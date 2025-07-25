@@ -1,7 +1,7 @@
 
 const Footer = () => {
   return (
-    <div className="py-10 ">
+    <div className="py-10">
       <footer className=" sm:footer-horizontal  grid w-full ">
         <aside className="bg-[#1F2937] text-white w-1/2 sm:w-full flex flex-col justify-center items-center py-10">
           <h3 className="text-5xl">Contact Us</h3>

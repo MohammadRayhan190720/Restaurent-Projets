@@ -14,7 +14,7 @@ const Navbar = () => {
       <NavLink className="mr-5" to="/">
         DashBoard
       </NavLink>
-      <NavLink className="mr-5" to="/">
+      <NavLink className="mr-5" to="/menu">
         Our Menu
       </NavLink>
       <NavLink className="mr-5" to="/">
