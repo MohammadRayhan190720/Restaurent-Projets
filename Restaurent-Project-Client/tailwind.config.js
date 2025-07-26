@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         fontInter: ["Inter", "serif"],
+        fontCinzel: ["Cinzel", "serif"],
       },
       backgroundImage: {
         bannerBg: "url('/src/assets/home/chef-service.jpg')",
