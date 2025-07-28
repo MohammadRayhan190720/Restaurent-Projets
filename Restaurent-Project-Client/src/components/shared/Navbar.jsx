@@ -17,19 +17,19 @@ const Navbar = () => {
       <NavLink className="mr-5" to="/menu">
         Our Menu
       </NavLink>
-      <NavLink className="mr-5" to="/">
-        Our Shop
+      <NavLink className="mr-5" to="/orderFood">
+        Order Food
       </NavLink>
     </>
   );
   return (
-    <div className="navbar fixed z-10 bg-black opacity-50  text-white max-w-7xl mx-auto">
+    <div className="fixed z-10 mx-auto text-white bg-black opacity-50 navbar max-w-7xl">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="w-5 h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -45,15 +45,15 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box z-1 w-52"
           >
             {menu}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Bristro Boss Resturant</a>
+        <a className="text-xl btn btn-ghost">Bristro Boss Resturant</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{menu}</ul>
+      <div className="hidden navbar-center lg:flex">
+        <ul className="px-1 menu menu-horizontal">{menu}</ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>

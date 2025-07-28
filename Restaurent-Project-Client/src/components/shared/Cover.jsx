@@ -15,10 +15,10 @@ const Cover = ({ img, title }) => {
         // }}
       >
         <div className="hero-overlay"></div>
-        <div className="hero-content text-neutral-content text-center">
-          <div className="max-w-md font-fontCinzel">
+        <div className="text-center hero-content text-neutral-content">
+          <div className="py-16 bg-black rounded-lg opacity-50 px-28 font-fontCinzel">
             <h1 className="mb-5 text-5xl font-bold ">{title}</h1>
-            <p className=" text-2xl mb-5 ">Would you like to try a dish?</p>
+            <p className="mb-5 text-2xl ">Would you like to try a dish?</p>
           </div>
         </div>
       </div>
