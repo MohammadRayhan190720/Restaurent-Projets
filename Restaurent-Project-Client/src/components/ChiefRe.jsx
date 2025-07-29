@@ -5,10 +5,10 @@ const ChiefRe = () => {
   return (
     
     
-    <div className="border-t-2 border-b-2 border-yellow-400 my-10">
+    <div className="my-10 border-t-2 border-b-2 border-yellow-400">
       <SectionTitle 
       subHeading={'Should Try'}
-      heading={'cheif Recomendation'} >
+      heading={'cheif Recommendation'} >
 
       </SectionTitle>
       <CheifReCard></CheifReCard>

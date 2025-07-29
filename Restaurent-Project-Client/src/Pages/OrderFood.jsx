@@ -6,12 +6,13 @@ import "react-tabs/style/react-tabs.css";
 import { useState } from "react";
 import useMenu from "../hooks/useMenu";
 import FoodCard from "../components/FoodCard";
+import OrderTab from "../components/OrderTab";
 
 const OrderFood = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [menu] = useMenu();
   
-    const offered = menu.filter((item) => item.category === "offered");
+    const drinks = menu.filter((item) => item.category === "drinks");
     const deserts = menu.filter((item) => item.category === "dessert");
     const salads = menu.filter((item) => item.category === "salad");
     const pizzas = menu.filter((item) => item.category === "pizza");
@@ -19,7 +20,7 @@ const OrderFood = () => {
 
 
   return (
-    <div>
+    <div >
       <Helmet>
         <title>Order Food - Bistro Boss Restaurant</title>
       </Helmet>
@@ -31,7 +32,7 @@ const OrderFood = () => {
         defaultIndex={tabIndex}
         onSelect={(index) => setTabIndex(index)}
       ></Tabs>
-      <Tabs>
+      <Tabs className='mt-7'>
         <TabList>
           <Tab>Salads</Tab>
           <Tab>Pizzas</Tab>
@@ -41,16 +42,20 @@ const OrderFood = () => {
         </TabList>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-10 my-10 md:grid-cols-2 lg:grid-cols-3">
-            {salads.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
+          <OrderTab items={salads}> </OrderTab>
         </TabPanel>
-        <TabPanel></TabPanel>
-        <TabPanel></TabPanel>
-        <TabPanel></TabPanel>
-        <TabPanel></TabPanel>
+        <TabPanel>
+          <OrderTab items={pizzas}> </OrderTab>
+        </TabPanel>
+        <TabPanel>
+          <OrderTab items={soups}> </OrderTab>
+        </TabPanel>
+        <TabPanel>
+          <OrderTab items={deserts}> </OrderTab>
+        </TabPanel>
+        <TabPanel>
+          <OrderTab items={drinks}> </OrderTab>
+        </TabPanel>
       </Tabs>
     </div>
   );

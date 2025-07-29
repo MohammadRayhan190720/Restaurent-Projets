@@ -21,7 +21,7 @@ const CheifReCard = () => {
       </div>
       <div className="shadow-xl card bg-base-100">
         <figure className="px-10 pt-10">
-          <img src={cardimage} alt="Shoes" className="rounded-xl" />
+          <img src={cardImage} alt="Shoes" className="rounded-xl" />
         </figure>
         <div className="items-center text-center card-body">
           <h2 className="card-title">Card Title</h2>
@@ -38,7 +38,7 @@ const CheifReCard = () => {
       </div>
       <div className="shadow-xl card bg-base-100">
         <figure className="px-10 pt-10">
-          <img src={cardimage} alt="Shoes" className="rounded-xl" />
+          <img src={cardImage} alt="Shoes" className="rounded-xl" />
         </figure>
         <div className="items-center text-center card-body">
           <h2 className="card-title">Card Title</h2>
