@@ -7,10 +7,14 @@ import { useState } from "react";
 import useMenu from "../hooks/useMenu";
 import FoodCard from "../components/FoodCard";
 import OrderTab from "../components/OrderTab";
+import { useParams } from "react-router-dom";
 
 const OrderFood = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [menu] = useMenu();
+  
+  const {category} = useParams();
+  console.log(category);
   
     const drinks = menu.filter((item) => item.category === "drinks");
     const deserts = menu.filter((item) => item.category === "dessert");

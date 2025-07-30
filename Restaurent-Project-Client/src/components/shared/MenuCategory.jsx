@@ -13,7 +13,7 @@ const MenuCategory = ({items,img,title}) => {
         ))}
       </div>
 
-      <Link to={'/orderFood'} className="flex justify-center">
+      <Link to={`/orderFood/${title}`} className="flex justify-center">
         <button className="mt-4 border-0 border-b-4 btn btn-outline">
           Order Now
         </button>
