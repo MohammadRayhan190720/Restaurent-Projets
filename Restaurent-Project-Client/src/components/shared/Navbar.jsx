@@ -17,7 +17,7 @@ const Navbar = () => {
       <NavLink className="mr-5" to="/menu">
         Our Menu
       </NavLink>
-      <NavLink className="mr-5" to="/orderFood">
+      <NavLink className="mr-5" to="/orderFood/salads">
         Order Food
       </NavLink>
     </>
