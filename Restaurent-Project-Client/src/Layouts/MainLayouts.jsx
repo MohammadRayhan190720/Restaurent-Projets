@@ -1,14 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
 
 
 const MainLayouts = () => {
+  const location = useLocation();
+  console.log(location)
+  
+  const noHeaderFooter = location.pathname.includes('login')
   return (
-    <div className="font-fontInter max-w-7xl mx-auto border">
-      <Navbar></Navbar>
+    <div className="mx-auto border font-fontInter max-w-7xl">
+      { noHeaderFooter || <Navbar></Navbar>}
       <Outlet></Outlet>
-      <Footer></Footer>
+      { noHeaderFooter || <Footer></Footer>}
       
       
     </div>

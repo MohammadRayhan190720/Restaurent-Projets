@@ -20,6 +20,9 @@ const Navbar = () => {
       <NavLink className="mr-5" to="/orderFood/salads">
         Order Food
       </NavLink>
+      <NavLink className="mr-5" to="/login">
+        Login
+      </NavLink>
     </>
   );
   return (
