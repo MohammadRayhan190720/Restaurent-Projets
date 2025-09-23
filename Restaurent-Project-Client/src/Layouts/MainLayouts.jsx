@@ -7,7 +7,7 @@ const MainLayouts = () => {
   const location = useLocation();
   console.log(location)
   
-  const noHeaderFooter = location.pathname.includes('login')
+  const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signUp');
   return (
     <div className="mx-auto border font-fontInter max-w-7xl">
       { noHeaderFooter || <Navbar></Navbar>}
