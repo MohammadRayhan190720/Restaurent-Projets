@@ -8,6 +8,7 @@ import {
 import { AuthContext } from '../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
@@ -20,7 +21,7 @@ const Login = () => {
   
   const [disabled,setDisabled] = useState(true);
   
-  const captchaRef = useRef(null);
+  // const captchaRef = useRef(null);
 
   const handleLogin = event =>{
     event.preventDefault();
@@ -31,12 +32,27 @@ const Login = () => {
     signIn(email,password)
     .then(result =>{
       const user = result.user;
-      console.log(user);
-    })
+    Swal.fire({
+  title: "Login Successful",
+  showClass: {
+    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `,
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `,
+  },
+});    })
   }
   
-  const handleValidateCaptcha = () =>{
-    const user_captcha_value = captchaRef.current.value;
+  const handleValidateCaptcha = (e) =>{
+    const user_captcha_value = e.target.value;
     // console.log(value);
     if(validateCaptcha(user_captcha_value)){
       setDisabled(false);
@@ -51,9 +67,9 @@ const Login = () => {
   }
   return (
     <>
-    <Helmet>
-        <title>Restaurent | Login</title>
-    </Helmet>
+      <Helmet>
+        <title>Restaurant | Login</title>
+      </Helmet>
       <div className="min-h-screen bg-base-200">
         <div className="flex-col hero-content ">
           <div className="text-center lg:text-left">
@@ -83,13 +99,11 @@ const Login = () => {
                 <input
                   type="text"
                   name="captcha"
-                  ref={captchaRef}
+                  onBlur={handleValidateCaptcha}
                   className="input"
                   placeholder="Enter Above text"
                 />
-                <button onClick={handleValidateCaptcha} className="btn btn-xs">
-                  Validate
-                </button>
+                {/* <button className="btn btn-xs">Validate</button> */}
 
                 <input
                   type="submit"
