@@ -7,6 +7,7 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from '../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
@@ -49,55 +50,67 @@ const Login = () => {
     
   }
   return (
-    <div className="min-h-screen bg-base-200">
-      <div className="flex-col hero-content ">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-        </div>
-        <div className="max-w-lg shadow-2xl bg-base-100">
-          <form onSubmit={handleLogin} className=" card-body">
-            <fieldset className="fieldset">
-              <label className="label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="input"
-                placeholder="Email"
-              />
-              <label className="label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="input"
-                placeholder="Password"
-              />
-              <label className="label">Captcha</label>
-              <div>
-                <LoadCanvasTemplate />
-              </div>
-              <input
-                type="text"
-                name="captcha"
-                ref={captchaRef}
-                className="input"
-                placeholder="Enter Above text"
-              />
-              <button onClick={handleValidateCaptcha} className="btn btn-xs">Validate</button>
+    <>
+    <Helmet>
+        <title>Restaurent | Login</title>
+    </Helmet>
+      <div className="min-h-screen bg-base-200">
+        <div className="flex-col hero-content ">
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-bold">Login now!</h1>
+          </div>
+          <div className="max-w-lg shadow-2xl bg-base-100">
+            <form onSubmit={handleLogin} className=" card-body">
+              <fieldset className="fieldset">
+                <label className="label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="input"
+                  placeholder="Email"
+                />
+                <label className="label">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="input"
+                  placeholder="Password"
+                />
+                <label className="label">Captcha</label>
+                <div>
+                  <LoadCanvasTemplate />
+                </div>
+                <input
+                  type="text"
+                  name="captcha"
+                  ref={captchaRef}
+                  className="input"
+                  placeholder="Enter Above text"
+                />
+                <button onClick={handleValidateCaptcha} className="btn btn-xs">
+                  Validate
+                </button>
 
-              <input
-                type="submit"
-                disabled={disabled}
-                className="mt-4 btn btn-neutral"
-                value="submit"
-              />
-            </fieldset>
-          </form>
-          <div>
-            <p className="mb-4 text-center">New Here? <Link className="font-bold text-orange-600" to="/signUp">Create an account</Link></p>
+                <input
+                  type="submit"
+                  disabled={disabled}
+                  className="mt-4 btn btn-neutral"
+                  value="submit"
+                />
+              </fieldset>
+            </form>
+            <div>
+              <p className="mb-4 text-center">
+                New Here?{" "}
+                <Link className="font-bold text-orange-600" to="/signUp">
+                  Create an account
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
