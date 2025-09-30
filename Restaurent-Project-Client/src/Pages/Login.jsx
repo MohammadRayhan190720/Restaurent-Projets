@@ -1,70 +1,69 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
-import { AuthContext } from '../Provider/AuthProvider';
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import Swal from 'sweetalert2';
-
+import { AuthContext } from "../Provider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const {signIn} = useContext(AuthContext)
-  
-  useEffect(()=>{
+  const from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
     loadCaptchaEnginge(6);
-  },[])
-  
-  const [disabled,setDisabled] = useState(true);
-  
+  }, []);
+
+  const [disabled, setDisabled] = useState(true);
+
   // const captchaRef = useRef(null);
 
-  const handleLogin = event =>{
+  const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     // console.log(email, password)
-    signIn(email,password)
-    .then(result =>{
+    signIn(email, password).then((result) => {
       const user = result.user;
-    Swal.fire({
-  title: "Login Successful",
-  showClass: {
-    popup: `
+      Swal.fire({
+        title: "Login Successful",
+        showClass: {
+          popup: `
       animate__animated
       animate__fadeInUp
       animate__faster
     `,
-  },
-  hideClass: {
-    popup: `
+        },
+        hideClass: {
+          popup: `
       animate__animated
       animate__fadeOutDown
       animate__faster
     `,
-  },
-});    })
-  }
-  
-  const handleValidateCaptcha = (e) =>{
+        },
+      });
+      navigate(from, { replace: true });
+    });
+  };
+
+  const handleValidateCaptcha = (e) => {
     const user_captcha_value = e.target.value;
     // console.log(value);
-    if(validateCaptcha(user_captcha_value)){
+    if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
-    }
-    else{
+    } else {
       setDisabled(true);
-      alert('Captcha Does Not Match. Please Try Again');
-      
+      alert("Captcha Does Not Match. Please Try Again");
     }
-    
-    
-  }
+  };
   return (
     <>
       <Helmet>
