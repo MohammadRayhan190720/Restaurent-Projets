@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
 
-  const {createUser} = useContext(AuthContext);
+  const {createUser,updateUserProfile} = useContext(AuthContext);
+  const navigate = useNavigate();
   // useForm hook
   const {
     register,
@@ -22,8 +24,21 @@ const SignUp = () => {
     createUser(data.email, data.password)
     .then(result =>{
       const loggedUser = result.user;
-      console.log(loggedUser);
-      reset();
+      // console.log(loggedUser);
+      updateUserProfile(data.name,data.photoURL)
+      .then(()=>{
+        console.log('user profile updated');
+        reset();
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Successfully SignUp",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate('/');
+      })
+      .catch(error => console.log(error))
     })
     // এখানে তুমি signup logic (Firebase/Auth/Backend API) কল করতে পারো
   };
@@ -50,6 +65,17 @@ const SignUp = () => {
                   {...register("name", { required: "Name is required" })}
                 />
                 {errors.name && (
+                  <p className="text-sm text-red-500">{errors.name.message}</p>
+                )}
+                {/* photoURL */}
+                <label className="label">PhotoURL</label>
+                <input
+                  type="text"
+                  placeholder="Photo URl"
+                  className="input"
+                  {...register("photoURL", { required: "Photo URL is required" })}
+                />
+                {errors.photoURL && (
                   <p className="text-sm text-red-500">{errors.name.message}</p>
                 )}
 

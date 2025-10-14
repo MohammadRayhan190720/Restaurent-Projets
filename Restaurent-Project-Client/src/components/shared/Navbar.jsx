@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { LuShoppingCart } from "react-icons/lu";
+
 
 const Navbar = () => {
   const {user,signOutUser} = useContext(AuthContext);
+
 
   const handleSignOut = () =>{
     signOutUser()
@@ -32,26 +35,21 @@ const Navbar = () => {
       <NavLink className="mr-5" to="/secret">
         Private Route
       </NavLink>
-      <NavLink className="mr-5" to="/orderFood/salads">
+      <NavLink className="mr-5" to="/orderFood/salad">
         Order Food
       </NavLink>
-      {user ? (
-        <>
-          <button className="mr-5" onClick={handleSignOut}>
-            LogOut
-          </button>
-        </>
-      ) : (
-        <>
-          <NavLink className="mr-5" to="/login">
-            Login
-          </NavLink>
-        </>
-      )}
+
+      <NavLink className="mr-5" to="/">
+        <button className="btn">
+          <LuShoppingCart className="mt-2" />
+
+          <div className=" badge badge-sm badge-secondary">+0</div>
+        </button>
+      </NavLink>
     </>
   );
   return (
-    <div className="fixed z-10 mx-auto text-white bg-black opacity-50 navbar max-w-7xl">
+    <div className="fixed z-10 mx-auto text-white bg-black navbar max-w-7xl">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -84,7 +82,27 @@ const Navbar = () => {
         <ul className="px-1 menu menu-horizontal">{menu}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {user ? (
+          <>
+            <button className="mr-5" onClick={handleSignOut}>
+              LogOut
+            </button>
+          </>
+        ) : (
+          <>
+            <NavLink className="mr-5" to="/login">
+              Login
+            </NavLink>
+          </>
+        )}
+        {user && (
+          <img
+            className="w-12 h-12 rounded-full"
+            src={user.photoURL}
+            title={user.displayName}
+            alt=""
+          />
+        )}
       </div>
     </div>
   );
