@@ -1,4 +1,3 @@
-import {Helmet} from "react-helmet-async";
 import Cover from "../components/shared/Cover";
 import MenuImage from '../assets/menu/banner3.jpg'
 import useMenu from "../hooks/useMenu";
@@ -20,9 +19,6 @@ const Menu = () => {
   const soups = menu.filter(item => item.category === 'soup');
   return (
     <div>
-      <Helmet>
-        <title>Our Menu - Bistro Boss Restaurant</title>
-      </Helmet>
       <Cover img={MenuImage} title='Our Menu'>
         {" "}
       </Cover>
