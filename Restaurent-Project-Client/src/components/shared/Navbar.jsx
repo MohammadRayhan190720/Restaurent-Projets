@@ -2,10 +2,14 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { LuShoppingCart } from "react-icons/lu";
+import useCart from '../../hooks/useCart';
 
 
 const Navbar = () => {
   const {user,signOutUser} = useContext(AuthContext);
+  
+  const [cartData]= useCart();
+  // console.log(cartData);
 
 
   const handleSignOut = () =>{
@@ -43,7 +47,7 @@ const Navbar = () => {
         <button className="btn">
           <LuShoppingCart className="mt-2" />
 
-          <div className=" badge badge-sm badge-secondary">+0</div>
+          <div className=" badge badge-sm badge-secondary">+{cartData.length}</div>
         </button>
       </NavLink>
     </>
