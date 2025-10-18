@@ -35,6 +35,16 @@ async function run() {
     const menuCollection = client.db("Bristro_Boss").collection("menu");
     const reviewCollection = client.db("Bristro_Boss").collection("reviews");
     const cartCollection = client.db("Bristro_Boss").collection("carts");
+    const userCollection = client.db("Bristro_Boss").collection("users");
+
+
+    //users collection api
+
+    app.post("/users",async(req,res)=>{
+      const user = req.body;
+      const result = await userCollection.insertOne(user);
+      res.send(result);
+    })
 
     app.get("/menu", async (req, res) => {
       const result = await menuCollection.find().toArray();
