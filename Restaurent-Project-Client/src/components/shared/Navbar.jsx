@@ -43,7 +43,7 @@ const Navbar = () => {
         Order Food
       </NavLink>
 
-      <NavLink className="mr-5" to="/">
+      <NavLink className="mr-5" to="/dashboard/cart">
         <button className="btn">
           <LuShoppingCart className="mt-2" />
 
