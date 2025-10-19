@@ -3,11 +3,14 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import SocialLogin from "../components/shared/SocialLogin";
 
 const SignUp = () => {
 
   const {createUser,updateUserProfile} = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   // useForm hook
   const {
     register,
@@ -27,15 +30,32 @@ const SignUp = () => {
       updateUserProfile(data.name,data.photoURL)
       .then(()=>{
         console.log('user profile updated');
-        reset();
-        Swal.fire({
-          position: "top",
-          icon: "success",
-          title: "Successfully SignUp",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate('/');
+        //create user entry to DB
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        }
+
+        axiosPublic.post('/users',userInfo)
+        .then(res =>{
+          if(res.data.insertedId){
+            
+            console.log('user info saved to db');
+             reset();
+             Swal.fire({
+               position: "top",
+               icon: "success",
+               title: "Successfully SignUp",
+               showConfirmButton: false,
+               timer: 1500,
+             });
+             navigate("/");
+            
+          }
+        
+        })
+        
+       
       })
       .catch(error => console.log(error))
     })
@@ -142,6 +162,7 @@ const SignUp = () => {
                   Login
                 </Link>
               </p>
+              <SocialLogin></SocialLogin>
             </div>
           </div>
         </div>

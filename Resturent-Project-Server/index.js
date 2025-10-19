@@ -70,7 +70,6 @@ async function run() {
       const cartItem = req.body;
       const result = await cartCollection.insertOne(cartItem);
       res.send(result)
-
     })
 
     //delete a cart
