@@ -6,12 +6,13 @@ import { FiMenu } from 'react-icons/fi';
 import { IoMdMenu } from 'react-icons/io';
 import { MdMessage, MdOutlinePayment } from 'react-icons/md';
 import { NavLink, Outlet } from 'react-router-dom';
+import useAdmin from '../hooks/useAdmin';
 
 const DashBoard = () => {
   
   //TODO: load admin data from the DB
 
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   
   return (
     <div className="flex">
