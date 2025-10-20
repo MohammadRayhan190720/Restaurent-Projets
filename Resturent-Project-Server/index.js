@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
 require("dotenv").config({ debug: true });
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
