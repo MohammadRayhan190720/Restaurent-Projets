@@ -3,10 +3,9 @@ import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
 
 const AdminRoute = ({children}) => {
-  const[user,loading] = useAuth();
+  const{user,loading} = useAuth();
   const [isAdmin,isAdminLoading] = useAdmin();
-
-    const location = useLocation();
+  const location = useLocation();
 
     if (loading || isAdminLoading) {
       return <span className="loading loading-ring loading-xl"></span>;
@@ -16,9 +15,6 @@ const AdminRoute = ({children}) => {
       return children;
     }
     return <Navigate to={"/login"} state={{ from: location }} replace />; 
-
-
-
 
 };
 
