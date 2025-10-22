@@ -138,6 +138,12 @@ async function run() {
       res.send(result);
     });
 
+    app.post('/menu',verifyToken,verifyAdmin, async (req,res)=>{
+        const menuItem = req.body;
+        const result = await menuCollection.insertOne(menuItem);
+        res.send(result)
+    })
+
     app.get("/reviews", async (req, res) => {
       const cursor = reviewCollection.find();
       const result = await cursor.toArray();
