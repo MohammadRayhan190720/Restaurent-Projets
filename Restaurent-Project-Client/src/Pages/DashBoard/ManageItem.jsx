@@ -22,15 +22,16 @@ const ManageItem = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/menu/${item._id}`).then((res) => {
+        axiosSecure.delete(`/menu/${item._id}`)
+        .then((res) => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
+            refetch();
             Swal.fire({
               title: "Deleted!",
               text: `${item.name} has been deleted.`,
               icon: "success",
             });
-            refetch();
           }
         });
       }
