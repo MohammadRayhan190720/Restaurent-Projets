@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { AuthContext } from '../../Provider/AuthProvider';
 import { LuShoppingCart } from "react-icons/lu";
 import useCart from '../../hooks/useCart';
+import useAuth from '../../hooks/useAuth';
+import useAdmin from '../../hooks/useAdmin';
 
 
 const Navbar = () => {
-  const {user,signOutUser} = useContext(AuthContext);
+  const {user,signOutUser} = useAuth();
+  const [isAdmin] = useAdmin()
+  
+  
   
   const [cartData]= useCart();
   // console.log(cartData);
@@ -36,9 +39,16 @@ const Navbar = () => {
       <NavLink className="mr-5" to="/menu">
         Our Menu
       </NavLink>
-      <NavLink className="mr-5" to="/secret">
-        Private Route
-      </NavLink>
+      {user && isAdmin ? (
+        <NavLink className="mr-5" to="/dashboard/adminHome">
+          AdminHome
+        </NavLink>
+      ) : (
+        <NavLink className="mr-5" to="/dashboard/userHome">
+          userHome
+        </NavLink>
+      )}
+
       <NavLink className="mr-5" to="/orderFood/salad">
         Order Food
       </NavLink>
@@ -47,7 +57,9 @@ const Navbar = () => {
         <button className="btn">
           <LuShoppingCart className="mt-2" />
 
-          <div className=" badge badge-sm badge-secondary">+{cartData.length}</div>
+          <div className=" badge badge-sm badge-secondary">
+            +{cartData.length}
+          </div>
         </button>
       </NavLink>
     </>
