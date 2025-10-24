@@ -1,68 +1,72 @@
-import { useLoaderData } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { FaUtensils } from "react-icons/fa6";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
-import SectionTitle from "../../components/shared/SectionTitle";
+import React from 'react';
+import SectionTitle from '../../components/shared/SectionTitle';
+import { useLoaderData } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+import { FaUtensils } from 'react-icons/fa';
+
 
 const image_hoisting_Key = import.meta.env.VITE_IMAGE_HOISTING_KEY;
 const image_hoisting_api = `https://api.imgbb.com/1/upload?key=${image_hoisting_Key}`;
 
 const UpdateItem = () => {
-  const items = useLoaderData();
-  const item = items[0];
+  const item = useLoaderData();
+  console.log(item)
+  //  const item = items[0];
 
-  const { name, category, recipe, price, _id } = item;
-  console.log(item);
+   const { name, category, recipe,price,_id} = item;
+   console.log(item);
 
-  const { register, handleSubmit, reset } = useForm();
+   const { register, handleSubmit, reset } = useForm();
 
-  const axiosPublic = useAxiosPublic();
-  const axiosSecure = useAxiosSecure();
+   const axiosPublic = useAxiosPublic();
+   const axiosSecure = useAxiosSecure();
 
-  const onSubmit = async (data) => {
-    console.log("Form Data:", data);
+   const onSubmit = async (data) => {
+     console.log("Form Data:", data);
 
-    //image upload to imgbb and get an URL
-    const imageFile = { image: data.fileInput[0] };
-    const res = await axiosPublic.post(image_hoisting_api, imageFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
-    if (res.data.success) {
-      //now send menu item data to server
-      const menuItem = {
-        name: data.name,
-        recipe: data.recipe,
-        price: parseInt(data.price),
-        category: data.category,
-        image: res.data.data.display_url,
-      };
+     //image upload to imgbb and get an URL
+     const imageFile = { image: data.fileInput[0] };
+     const res = await axiosPublic.post(image_hoisting_api, imageFile, {
+       headers: {
+         "content-type": "multipart/form-data",
+       },
+     });
+     if (res.data.success) {
+       //now send menu item data to server
+       const menuItem = {
+         name: data.name,
+         recipe: data.recipe,
+         price: parseInt(data.price),
+         category: data.category,
+         image: res.data.data.display_url,
+       };
 
-      const menuRes = await axiosSecure.patch(`/menu/${item._id}`, menuItem);
-      console.log(menuRes.data);
-      if (menuRes.data.modifiedCount > 0) {
-        //show success message
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${data.name} Updated successfully`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+       const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
+       console.log(menuRes.data);
+       if (menuRes.data.modifiedCount > 0) {
+        console.log("updated")
+         //show success message
+         Swal.fire({
+           position: "top-end",
+           icon: "success",
+           title: `${data.name} Updated successfully`,
+           showConfirmButton: false,
+           timer: 1500,
+         });
+       }
+     }
+     console.log(res.data);
+     reset();
     }
-    console.log(res.data);
-    reset();
-  };
 
   return (
     <div>
       <SectionTitle
-        Heading={"Update an Item"}
-        subHeading={"Need to Updated?"}
+        heading={"Update An Item"}
+        subHeading={"Update Your Life"}
       ></SectionTitle>
 
       <div className="max-w-3xl p-4 mx-auto bg-gray-200 rounded shadow">

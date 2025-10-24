@@ -78,7 +78,7 @@ const ManageItem = () => {
                 <td>{item.name}</td>
                 <td>$ {item.price}</td>
                 <th>
-                  <Link to={`/dashboard/updateItems/${item._id}`}>
+                  <Link to={`/dashboard/updateItem/${item._id}`}>
                     <button
                       onClick={() => {
                         handleUpdate(item._id);

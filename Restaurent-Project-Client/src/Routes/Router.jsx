@@ -80,12 +80,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manageItems",
-        element: <AdminRoute> <ManageItem></ManageItem> </AdminRoute>
+        element: (
+          <AdminRoute>
+            {" "}
+            <ManageItem></ManageItem>{" "}
+          </AdminRoute>
+        ),
       },
       {
-        path: "/dashboard/updateItems",
-        element: <AdminRoute> <UpdateItem></UpdateItem> </AdminRoute>
-
+        path: "/dashboard/updateItem/:id",
+        element: (
+          <AdminRoute>
+            <UpdateItem></UpdateItem>{" "}
+          </AdminRoute>
+        ),
+        loader: ({params}) => fetch(`http://localhost:3000/menu/${params.id}`),
       },
     ],
   },

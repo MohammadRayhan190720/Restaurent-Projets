@@ -139,8 +139,8 @@ async function run() {
     });
     app.get("/menu/:id", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await menuCollection.find(query).toArray();
+      const query = { _id: (id) };
+      const result = await menuCollection.findOne(query);
       res.send(result);
     });
 
@@ -153,7 +153,7 @@ async function run() {
         app.patch("/menu/:id", async (req, res) => {
           const item = req.body;
           const id = req.params.id;
-          const query = { _id: new ObjectId(id) };
+          const query = { _id: (id) };
           // const options = { upsert: true };
           const updatedItem = {
             $set: {
