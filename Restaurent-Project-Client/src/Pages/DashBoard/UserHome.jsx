@@ -5,8 +5,10 @@ const UserHome = () => {
 
   return (
     <div>
-      <h2>Assalamualikum, Welcome</h2>
-      {user?.displayName? `${user.displayName}` : "Back"}
+      <h2>
+        Assalamualikum, Welcome
+        {user?.displayName ? `${user.displayName}` : "Back"}
+      </h2>
     </div>
   );
 };
