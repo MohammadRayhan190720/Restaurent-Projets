@@ -39,11 +39,12 @@ const Navbar = () => {
       <NavLink className="mr-5" to="/menu">
         Our Menu
       </NavLink>
-      {user && isAdmin ? (
+      {user && isAdmin && (
         <NavLink className="mr-5" to="/dashboard/adminHome">
           AdminHome
         </NavLink>
-      ) : (
+      )}
+      {user && !isAdmin && (
         <NavLink className="mr-5" to="/dashboard/userHome">
           userHome
         </NavLink>
