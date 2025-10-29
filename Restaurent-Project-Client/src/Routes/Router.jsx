@@ -14,6 +14,8 @@ import AddItems from "../Pages/DashBoard/AddItems";
 import AdminRoute from "./AdminRoute";
 import ManageItem from "../Pages/DashBoard/ManageItem";
 import UpdateItem from "../Pages/DashBoard/UpdateItem";
+import UserHome from "../Pages/DashBoard/UserHome";
+import AdminHome from "../Pages/DashBoard/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -54,10 +56,15 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: (
       <PrivetRoute>
-        <DashBoard></DashBoard>{" "}
+        <DashBoard></DashBoard>
       </PrivetRoute>
     ),
     children: [
+      //normal user route
+      {
+        path: "/dashboard/userHome",
+        element: <UserHome></UserHome>
+      },
       {
         path: "/dashboard/cart",
         element: <MyCart></MyCart>,
@@ -69,6 +76,13 @@ export const router = createBrowserRouter([
             <AllUsers></AllUsers>
           </AdminRoute>
         ),
+      },
+
+      //admin only routes
+      {
+        path: "/dashboard/adminHome",
+        element: <AdminRoute> <AdminHome></AdminHome> </AdminRoute>
+
       },
       {
         path: "/dashboard/addItems",

@@ -6,7 +6,7 @@ const UserHome = () => {
   return (
     <div>
       <h2>Assalamualikum, Welcome</h2>
-      {user ? `${user.name}` : "Back"}
+      {user?.displayName? `${user.displayName}` : "Back"}
     </div>
   );
 };
